@@ -16,8 +16,13 @@ Route::get('/', function () {
 });
 
 Route::get('/posts','PostController@index');
-Route::get('/menu','SoccerController@menu');
-Route::get('/m','PostController@m');
+Route::get('/posts/create', 'PostController@create');
+Route::get('/posts/{post}/edit','PostController@edit');
+Route::put('/posts/{post}','PostController@update');
+Route::delete('/posts/{post}', 'PostController@destroy');
+Route::get('/posts/{post}','PostController@show');
+Route::post('/posts', 'PostController@store');
+Route::get('/loginmenu','PostController@loginmenu');
 //Route::get('/PL','SoccerApiController@rank')->name('Sc.premier');
 Route::get('/{league}/rank','SoccerApiController@rank')->name('rank');
 Route::get('/{league}/score','SoccerApiController@score')->name('score');

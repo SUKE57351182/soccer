@@ -1,24 +1,23 @@
-<!DOCTYPE html>
-<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
-    <head>
-        <meta charset="utf-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1">
+@extends('layouts.app')
 
-        <title>blog</title>
+@section('content')
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@200;600&display=swap" rel="stylesheet">
-    </head>
-    <body>
+   
         <h1>SOCCER BLOG</h1>
+        <p class='create'>[<a href='/posts/create'>作成</a>]</p>
         <div class='posts'>
             @foreach ($posts as $post)
                 <div class='post'>
-                    <h2 class='title'>{{ $post->tittle }}</h2>
+                    <a href='/posts/{{ $post->id}}'><h2 class='name'>{{ $post->name }}</h2></a>
                     <P class='body'>{{ $post->body }}</P>
                 </div>
             @endforeach
         </div>
+        <div class='paginate'>
+            {{ $posts->links() }}
+        </div>
         
-    </body>
-</html>
+        <h2><a href='/loginmenu'>戻る</a></h2>
+@endsection

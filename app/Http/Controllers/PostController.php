@@ -3,14 +3,11 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+use App\Http\Requests\PostRequest;
 
 class PostController extends Controller
 {
-   public function index(Post $post)
-   {
-      return $post->get();
-   }
+
    
    public function home()
    {
@@ -18,17 +15,50 @@ class PostController extends Controller
       
    }
    
-   public function menu(){
-      return view('menu');
+   public function loginmenu(){
+      return view('loginmenu');
    }
    
-   public function m(){
-      return view('m');
-   }
-   
-   public function blog(Soccer $soccer)
+   public function index(Post $post)
    {
-      return $post->get();
+      return view('index')->with(['posts' => $post->getPaginateByLimit()]);
+   }
+   
+   public function show(Post $post)
+   {
+      return view('show')->with(['post' => $post]);
+   }
+   
+   public function create()
+   {
+     
+      return view('create');
+   }
+   
+   public function store(PostRequest $request, Post $post)
+   {
+      $input = $request['post'];
+      $post->fill($input)->save();
+      return redirect('/posts/' . $post->id);
+   }
+   
+   public function edit(Post $post)
+   {
+      return view('edit')->with(['post' => $post]);
+   }
+   
+   public function update(PostRequest $request, Post $post)
+   {
+      $input = $request['post'];
+      $post->fill($input)->save();
+   
+      return redirect('/posts/' . $post->id);
+   }
+   
+   public function destroy(Post $post)
+   {
+      $post->delete();
+      return redirect('/posts');
    }
    
 }

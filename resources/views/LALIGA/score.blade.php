@@ -1,14 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="csrf-token">
-  <title>Soccer-FUT</title>
-  <link rel="stylesheet" type="text/css" href="./css/style.css">
-</head>
-<body>
+@extends('layouts.app')
+
+@section('content')
+
     <h3 class="mx-3">
         【ラリーガ 個人成績】
     </h3>
@@ -36,6 +29,13 @@
             @endif
         </tbody>
     </table>
-   
-</body>
-</html>
+    
+    @if(Auth::user())
+    <h2><a href='/loginmenu'>戻る</a></h2><h2>
+    @else
+    <a href='/'>戻る</a></h2>
+    @endif
+
+
+
+@endsection

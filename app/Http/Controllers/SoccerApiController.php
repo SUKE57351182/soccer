@@ -29,7 +29,7 @@ class SoccerApiController extends Controller
         
         
         $reqPrefs['http']['method'] = 'GET';
-        $reqPrefs['http']['header'] = 'X-Auth-Token:de872618535844df9177c75327e27f23';
+        $reqPrefs['http']['header'] = 'X-Auth-Token:'.config('app.api_token_key');
         $stream_context = stream_context_create($reqPrefs);
         $response = file_get_contents($uri, false, $stream_context);
         //dd($response);
@@ -63,7 +63,7 @@ class SoccerApiController extends Controller
         }
         
         $reqPrefs['http']['method'] = 'GET';
-        $reqPrefs['http']['header'] = 'X-Auth-Token: de872618535844df9177c75327e27f23';
+        $reqPrefs['http']['header'] = 'X-Auth-Token:'.config('app.api_token_key');
         $stream_context = stream_context_create($reqPrefs);
         $response = file_get_contents($uri, false, $stream_context);
         //dd($response);

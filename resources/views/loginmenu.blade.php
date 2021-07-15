@@ -1,15 +1,7 @@
-<!DOCTYPE html>
-<html lang="ja">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
- <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="csrf-token" content="csrf-token">
-  <title>Soccer-FUT </title>
-  <link rel="stylesheet" type="text/css" href="./css/style.css">
-</head>
-<body>
-    <h1>おかえりなさい　<?php $user = Auth::user(); ?>{{ $user->name }}</h1>
+@extends('layouts.app')
+
+@section('content')
+    <h1>おかえりなさい　{{Auth::user()->name}}</h1>
     <h1>'ようこそSOCCER FUT情報へ'</h1>
     
     <h2>
@@ -44,16 +36,9 @@
     
     <h2>
         <ul>
-            <li>掲示板</li>
+            <li><a href="/posts">掲示板</a></li>
             <li>（*現在なし*）ブログ</li>
         </ul>
     </h2>
-    
-    <a href={{ route('logout') }} onclick="event.preventDefault();
-    document.getElementById('logout-form').submit();">
-    Logout
-</a>
-<form id='logout-form' action={{ route('logout')}} method="POST" style="display: none;">
-    @csrf
-</body>
-</html>
+@endsection
+
